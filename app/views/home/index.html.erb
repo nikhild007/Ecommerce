@@ -5,15 +5,15 @@
     <%end%>
 </div>
 
-<div class="row justify-content-start">
+<div class="d-flex">
     <% for product in @products%>
-        <a class="noStyleLink my-4" href="/products/<%= product.id%>">
-            <div class="col-4">
+        <div class="p-3 shadow">
+            <a class="noStyleLink my-4" href="/products/<%= product.id%>">
                 <div>
                     <%= image_tag product.image, alt: 'product Image', class: 'imgthumbnail' if product.image.attached? %>
                 </div>
                 <h5 class="my-3"><%= product.name %></h5>
-            </div>
-        </a>
+            </a>
+        </div>
     <% end %>
 </div>
