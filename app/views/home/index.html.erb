@@ -1,1 +1,19 @@
-All Products
+<div>
+    <h4>All Products</h4>  
+    <% if user_signed_in? %>
+        <% if current_user.role == "ADMIN" %><%= link_to 'Add Product',new_product_path %><%end%>
+    <%end%>
+</div>
+
+<div class="row justify-content-start">
+    <% for product in @products%>
+        <a class="noStyleLink my-4" href="/products/<%= product.id%>">
+            <div class="col-4">
+                <div>
+                    <%= image_tag product.image, alt: 'product Image', class: 'imgthumbnail' if product.image.attached? %>
+                </div>
+                <h5 class="my-3"><%= product.name %></h5>
+            </div>
+        </a>
+    <% end %>
+</div>

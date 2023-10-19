@@ -1,0 +1,11 @@
+<div class="productHomePage">
+   <div class="d-flex justify-content-between">
+        <%= image_tag @product.image, alt: 'product Image', class: 'imgthumbnail large' if @product.image.attached? %>
+        <div class="productDescription">
+            <h2><%= @product.name%></h2>
+            <p><%= @product.description %></p>
+            <p><strong>Price : </strong> Rs <%= @product.price %>/-</p>
+            <%= button_to "Add To Cart", products_path, method: :post, class: "btn btn-warning" %>
+        </div>
+    </div>
+</div>
