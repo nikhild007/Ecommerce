@@ -5,6 +5,7 @@ class ProductsController < ApplicationController
 
     def index
         @products = Product.all
+        render 'home/index'
     end
 
     def show

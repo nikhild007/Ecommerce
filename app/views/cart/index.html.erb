@@ -1,0 +1,27 @@
+<h4>Your Cart Items</h4>
+
+<% if @items.length == 0%>
+    <p>You don't have any products, <%= link_to 'Continue Shopping',products_path %></p>
+<%else%>
+
+    <% for cartItem in @items %>
+        <div class="card cardLayout">
+            <h5 class="card-header"><%= cartItem.product.name  %></h5>
+            <div class="card-body container d-flex justify-content-between">
+                <div class="col">
+                    <%= image_tag cartItem.product.image, alt: 'Article Image', class: 'imgthumbnail' if cartItem.product.image.attached? %>
+                </div>
+                <div class="col">
+                    <p>Quantity</p>
+                    <div class="d-flex align-items-center my-3">
+                        <%= button_to '-',decrement_quantity_path(cartItem.product.id),method: :post, class: "btn btn-danger decrement-button" %>
+                        <span id="quantity-display" class="mx-2"><%= cartItem.quantity %></span>
+                        <%= button_to '+',increment_quantity_path(cartItem.product.id),method: :post, class: "btn btn-success increment-button" %>
+                    </div>
+                    <%= link_to 'View',product_path(cartItem.product)%>
+                </div>
+            </div>
+        </div>
+    <%end%>
+
+<%end%>

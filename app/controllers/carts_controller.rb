@@ -1,6 +1,12 @@
 class CartsController < ApplicationController
     before_action :authenticate_user!
-    before_action :get_or_create_cart
+    before_action :get_or_create_cart, only: %i[ add_to_cart ]
+
+    def index
+        @cart = current_user.cart
+        @items = @cart.cart_items.includes(:product)
+        render 'cart/index'
+    end
 
     def add_to_cart
         product = Product.find(params[:product_id])
@@ -13,6 +19,7 @@ class CartsController < ApplicationController
             new_cart_item = CartItem.new(product_id: product.id,cart_id: @cart.id)
             new_cart_item.save
         end
+        redirect_to 
     end
 
     private
@@ -22,8 +29,9 @@ class CartsController < ApplicationController
                 @cart = Cart.new(user_id: current_user.id)
                 @cart.cart_items = []
                 @cart.save
+                @items = []
             else
-                @items = @cart.cart_items
+                @items = @cart.cart_items.includes(:product)
             end
         end
 end

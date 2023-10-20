@@ -7,8 +7,11 @@ Rails.application.routes.draw do
   resources :cart_items
   resources :order_items
 
-  post '/add_to_cart/:product_id', to: 'carts#add_to_cart', as: 'add_to_cart'
+  get '/cart',to: 'carts#index', as: 'get_cart'
+  post '/increment/:product_id', to: 'cart_items#increment', as: 'increment_quantity'
+  post '/decrement/:product_id', to: 'cart_items#decrement', as: 'decrement_quantity'
 
+  post '/add_to_cart/:product_id', to: 'carts#add_to_cart', as: 'add_to_cart'
 
   root to: "home#index" 
 
