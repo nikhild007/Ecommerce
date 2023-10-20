@@ -3,7 +3,6 @@
         <%= user_initials(current_user) %>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="avatarDropdown">
-        <li><%= link_to 'My Articles', class: "dropdown-item" %></li>
         <li><%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %></li>
     </ul>
 </div>

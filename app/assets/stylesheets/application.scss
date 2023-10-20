@@ -47,3 +47,13 @@
 .productHomePage {
   max-width: 70%;
 }
+
+.cart {
+  position: relative;
+}
+
+.cartCount {
+  position: absolute;
+  bottom: 10px;
+  padding: 2px;
+}
