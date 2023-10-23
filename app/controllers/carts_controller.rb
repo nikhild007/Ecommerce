@@ -19,7 +19,7 @@ class CartsController < ApplicationController
             new_cart_item = CartItem.new(product_id: product.id,cart_id: @cart.id)
             new_cart_item.save
         end
-        redirect_to 
+        redirect_to
     end
 
     private

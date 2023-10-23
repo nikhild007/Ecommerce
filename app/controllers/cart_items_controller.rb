@@ -30,4 +30,12 @@ class CartItemsController < ApplicationController
 
         redirect_to controller: 'carts', action: 'index'
     end
+
+    def destroy
+        product_id = params[:id]
+        cart_item = current_user.cart.cart_items.find_by(product_id: product_id)
+        cart_item.destroy!
+
+        redirect_to controller: 'carts', action: 'index'
+    end
 end
