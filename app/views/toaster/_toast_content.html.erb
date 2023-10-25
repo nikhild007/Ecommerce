@@ -1,0 +1,23 @@
+<script>
+  setTimeout(function() {
+    document.getElementById('toaster').style.display = "none"
+  }, 1200);
+</script>
+
+<div class="position-fixed bottom-0 end-0 p-3" id="toaster">
+  <% flash.each do |key, message| %>
+    <% if key == "notice" %>
+      <div class="toast show bg-success" role="success" aria-live="assertive" aria-atomic="true">
+        <div class="toast-body text-light">
+          <%= message %>
+        </div>
+      </div>
+    <% else %>
+      <div class="toast show bg-danger" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-body text-light">
+          <%= message %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
