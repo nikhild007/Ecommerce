@@ -7,12 +7,15 @@
 
 <div class="d-flex">
     <% for product in @products%>
-        <div class="p-3 shadow">
+        <div class="p-3 shadow m-3 productCard">
             <a class="noStyleLink my-4" href="/products/<%= product.id%>">
-                <div>
+                <div class="d-flex justify-content-center">
                     <%= image_tag product.image, alt: 'product Image', class: 'imgthumbnail' if product.image.attached? %>
                 </div>
                 <h5 class="my-3"><%= product.name %></h5>
+                <% if current_user&.role == "ADMIN" %>
+                    <%= link_to 'Delete', product_path(product),  data: { turbo_method: :delete } %>
+                <%end%>
             </a>
         </div>
     <% end %>

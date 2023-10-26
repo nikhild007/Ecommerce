@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+    include Pundit::Authorization
+
     before_action :authenticate_user!, except: [:index, :show]
     before_action :set_product, only: %i[ show destroy ]
 
@@ -13,18 +15,31 @@ class ProductsController < ApplicationController
     end
 
     def destroy
-        @product = Product.find(params[:id])
-        @product.destroy!
+        begin
+            @product = Product.find(params[:id])
+            authorize @product, :destroy?
+            @product.destroy!
 
-        redirect_to controller: "home",action: "index"
+            redirect_to controller: "home",action: "index"
+        rescue
+            redirect_to controller: "home",action: "index"
+        end
     end
 
     def create
         @product = Product.new(product_params)
-        if @product.save
-            redirect_to controller: 'home', action: 'index'
-        else
-            render 'new'
+        begin
+            authorize @product, :create?
+            if @product.save
+                redirect_to controller: 'home', action: 'index'
+            else
+                render 'new'
+            end
+            flash[:notice] = "New Product added"
+        rescue Exception => error
+            @error = "Not Authorized to create product"
+            flash[:error] = @error
+            redirect_to controller: 'products', action: 'new'
         end
     end
 

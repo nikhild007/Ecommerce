@@ -14,10 +14,11 @@ class CartsController < ApplicationController
         if cart_item
             cart_item.quantity += 1
             cart_item.save
-            flash[:notice] = "Item quantity updated."
+            flash[:notice] = "Item Added"
         else
             new_cart_item = CartItem.new(product_id: product.id,cart_id: @cart.id)
             new_cart_item.save
+            flash[:notice] = "Product added to cart"
         end
         redirect_to
     end
