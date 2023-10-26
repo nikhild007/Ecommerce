@@ -7,10 +7,10 @@ class ProductPolicy < ApplicationPolicy
   end
 
   def create?
-    user.admin?
+    user.has_role?("admin")
   end
 
   def destroy?
-    user.admin?
+    user.has_role?("admin")
   end
 end

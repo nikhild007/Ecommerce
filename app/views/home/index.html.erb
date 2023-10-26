@@ -1,7 +1,7 @@
 <div>
     <h4>All Products</h4>  
     <% if user_signed_in? %>
-        <% if current_user.role == "ADMIN" %><%= link_to 'Add Product',new_product_path %><%end%>
+        <%= link_to 'Add Product',new_product_path %>
     <%end%>
 </div>
 

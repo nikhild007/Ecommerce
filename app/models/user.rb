@@ -5,8 +5,15 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_one :cart
 
-  def admin?
-    print "ROLE",role=="ADMIN"
-    role == "ADMIN"
+  ROLES = {
+    "admin" => "ADMIN",
+    "user" => "USER"
+  }
+
+  def has_role?(role)
+    mapped_role = ROLES[role]
+    return false if mapped_role.nil? # Invalid role provided
+
+    self.role == mapped_role
   end
 end

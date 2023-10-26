@@ -34,8 +34,11 @@ class CartItemsController < ApplicationController
     def destroy
         product_id = params[:id]
         cart_item = current_user.cart.cart_items.find_by(product_id: product_id)
-        cart_item.destroy!
-
-        redirect_to controller: 'carts', action: 'index'
+        if cart_item.destroy!
+            flash[:notice] = "Item has been removed"
+            redirect_to controller: 'carts', action: 'index'
+        else
+            flash[:error] = "Something went wrong"
+        end
     end
 end
