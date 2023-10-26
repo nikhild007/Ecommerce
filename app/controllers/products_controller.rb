@@ -20,8 +20,6 @@ class ProductsController < ApplicationController
     end
 
     def create
-        # fileName = params[:article][:image].original_filename
-        # params[:article][:image] = fileName
         @product = Product.new(product_params)
         if @product.save
             redirect_to controller: 'home', action: 'index'
