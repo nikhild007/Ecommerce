@@ -1,6 +1,6 @@
 <h4>Your Cart Items</h4>
 
-<% if @items.length == 0%>
+<% if @items == nil ||  @items&.length == 0%>
     <p>You don't have any products, <%= link_to 'Continue Shopping',home_path %></p>
 <%else%>
 

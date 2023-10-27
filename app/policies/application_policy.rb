@@ -1,4 +1,3 @@
 class ApplicationPolicy
-  include Pundit
-
+  include Pundit::Authorization  
 end

@@ -1,0 +1,21 @@
+<h3>My Orders</h3>
+<div class="widthStyling">
+    <% for order in @orders %>
+        <div class="card my-4">
+            <div class="card-header">
+                <p>Order Id : <%= order.id %></p>
+            </div>
+            <div class="card-body d-flex justify-content-between">
+                <div class="d-flex justify-content-flex-start flex-wrap">
+                    <% for item in order.order_items %>
+                        <%= image_tag item.product.image, alt: 'product Image', class: 'imgthumbnailOrders' if item.product.image.attached? %>
+                    <% end %>
+                </div>
+                <div>
+                    <p>Total Order Value : <strong>Rs <%= order.total %>/- </strong> </p>
+                    <%=  link_to 'Order Details',order_path(order) %>
+                </div>
+            </div>
+        </div>
+    <% end %>
+</div>    

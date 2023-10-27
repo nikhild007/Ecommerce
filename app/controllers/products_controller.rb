@@ -19,7 +19,6 @@ class ProductsController < ApplicationController
             @product = Product.find(params[:id])
             authorize @product, :destroy?
             @product.destroy!
-
             redirect_to controller: "home",action: "index"
         rescue
             redirect_to controller: "home",action: "index"
@@ -28,18 +27,12 @@ class ProductsController < ApplicationController
 
     def create
         @product = Product.new(product_params)
-        begin
-            authorize @product, :create?
-            if @product.save
-                redirect_to controller: 'home', action: 'index'
-            else
-                render 'new'
-            end
+        authorize @product, :create?
+        if @product.save
             flash[:notice] = "New Product added"
-        rescue Exception => error
-            @error = "Not Authorized to create product"
-            flash[:error] = @error
-            redirect_to controller: 'products', action: 'new'
+            redirect_to controller: 'home', action: 'index'
+        else
+            render 'new'
         end
     end
 

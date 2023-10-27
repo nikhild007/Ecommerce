@@ -1,4 +1,7 @@
-<div class="d-flex justify-content-between align-items-center shadow position-fixed bottom-0 end-0 start-0 shadow-lg p-3 ">
+<div class="d-flex justify-content-between align-items-center shadow position-fixed bottom-0 end-0 start-0 shadow-lg p-3 bg-white ">
     <h5>Total items in your cart : <%= @items.length %> </h5>
-    <%= button_to 'Place Order and Pay', orders_path(@cart), method: :post, class: "btn btn-warning" %>
+    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#myModal">
+        Place Order and Pay
+    </button>
 </div>
+ <%= render 'orders/confirmation_modal'%>
