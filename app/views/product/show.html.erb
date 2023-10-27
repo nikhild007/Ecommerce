@@ -7,6 +7,5 @@
             <p><strong>Price : </strong> Rs <%= @product.price %>/-</p>
             <%= button_to "Add To Cart", add_to_cart_path(@product), method: :post, class: "btn btn-warning" %>
         </div>
-        <%= render 'toaster/toast_content' %>
     </div>
 </div>
