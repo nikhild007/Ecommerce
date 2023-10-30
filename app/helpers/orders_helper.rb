@@ -2,13 +2,13 @@ module OrdersHelper
     ORDER_STATUS_MESSAGES = {
        "accepted" => "Order Accepted",
        "dispatched" => "Dispatched",
-       "cancel" => "Cancelled",
+       "cancelled" => "Cancelled",
        "delivered" => "Delivered",
-       "return" => "Return in progress",
-       "refund" => "Refunded"
+       "returned" => "Return in progress",
+       "refunded" => "Refunded"
     }
 
-    ORDER_STATUS = ["accepted","dispatched","delivered","return","refund","cancel"]
+    ORDER_STATUS = ["accepted","dispatched","delivered","returned","refunded","cancelled"]
 
     def calculate_price(price,quantity)
         price*quantity

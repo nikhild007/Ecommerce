@@ -30,8 +30,10 @@ class OrdersController < ApplicationController
     def destroy
         authorize @order, :destroy?
         if @order.destroy!
+            flash[:notice] = "Order Deleted Successfully"
             redirect_to controller:"home", action: "index"
         else
+            flash[:error] = "Something went wrong while deleting the order"
             redirect_to controller: 'orders', action: 'show'
         end
     end
