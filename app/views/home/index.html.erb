@@ -1,7 +1,7 @@
 <div>
     <h4>All Products</h4>  
     <% if user_signed_in? %>
-        <% if current_user.role == "ADMIN" %><%= link_to 'Add Product',new_product_path %><%end%>
+        <% if current_user&.role == "ADMIN" %><%= link_to 'Add Product',new_product_path %><%end%>
     <%end%>
 </div>
 
@@ -14,7 +14,7 @@
                 </div>
                 <h5 class="my-3"><%= product.name %></h5>
                 <% if current_user&.role == "ADMIN" %>
-                    <%= link_to 'Delete', product_path(product),  data: { turbo_method: :delete } %>
+                    <%= link_to 'Delete', product_path(product),data: { turbo_method: :delete } %>
                 <%end%>
             </a>
         </div>

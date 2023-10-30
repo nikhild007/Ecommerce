@@ -8,13 +8,10 @@ class User < ApplicationRecord
 
   ROLES = {
     "admin" => "ADMIN",
-    "user" => "USER"
+    "customer" => "CUSTOMER"
   }
 
   def has_role?(role)
-    mapped_role = ROLES[role]
-    return false if mapped_role.nil? # Invalid role provided
-
-    self.role == mapped_role
+    self.role == ROLES[role]
   end
 end
