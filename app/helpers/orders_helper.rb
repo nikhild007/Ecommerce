@@ -35,4 +35,11 @@ module OrdersHelper
         ORDER_STATUS_MESSAGES[status]
     end
 
+    def manage_product_quantity(order_items)
+        for item in order_items
+            item.product.quantity += item.quantity
+            item.product.save
+        end
+    end
+
 end

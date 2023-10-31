@@ -10,9 +10,24 @@
             <p>Rs<%= calculate_price(item.product.price,item.quantity)%>/- </p>
         </div>
     <%end%>
-    <p><strong>Order Status : </strong><%= get_order_message(@order.status)%></p>
+    <div class="d-flex justify-content-between align-items-center">
+        <div class="my-3"><strong>Order Status : </strong><%= get_order_message(@order.status)%></div>
+        <% if current_user&.has_role?("admin") %>
+            <div>
+                <%= form_with(url: order_path(@order), method: :patch, html: { class: "widthStyling d-flex" }) do |form| %>
+                        <div class=" d-flex form-group justify-content-between align-items-center mx-2">
+                            <%= form.label :status, class: "mx-2" %> 
+                            <%= form.select :status, ['accepted',"delivered", 'cancelled',"returned"], :selected => @order.status, class: 'form-control' %>
+                        </div>
+                        <div>
+                            <%= form.submit "Update Status", class: 'btn-sm btn btn-primary' %>
+                        </div>
+                <%end%>
+            </div>
+        <% end %>
+    </div>
     <% if is_returnable?(@order.status) %>
-     <h6>Do you want to cancel your order ? 
+    <h6>Do you want to cancel your order ? 
        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#cancelModal">
             Cancel Order
         </button>
