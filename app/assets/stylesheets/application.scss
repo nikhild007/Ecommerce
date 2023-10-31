@@ -73,3 +73,16 @@
 .imgthumbnail_confirm_order {
   width: 150px;
 }
+
+#toaster {
+  z-index: 100;
+}
+
+td {
+  padding: 5px;
+  max-width: 400px;
+}
+
+tr {
+  margin-bottom: 10px;
+}

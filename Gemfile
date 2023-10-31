@@ -19,6 +19,12 @@ gem "sassc-rails"
 
 gem "pundit"
 
+gem 'ajax-datatables-rails',"1.3.0"
+
+gem 'jquery-rails'
+
+gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
+
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 

@@ -2,8 +2,7 @@
 
 <% if @items == nil ||  @items&.length == 0%>
     <p>You don't have any products, <%= link_to 'Continue Shopping',home_path %></p>
-<%else%>
-
+<% else %>
     <% for cartItem in @items %>
         <div class="card cardLayout">
             <h5 class="card-header"><%= cartItem.product.name  %></h5>
@@ -14,15 +13,15 @@
                 <div class="col">
                     <p>Quantity</p>
                     <div class="d-flex align-items-center my-3">
-                        <%= button_to '-',decrement_quantity_path(cartItem.product.id),method: :post, class: "btn btn-danger decrement-button" %>
+                        <%= button_to '-', decrement_quantity_path(cartItem.product.id), method: :post, class: "btn btn-danger decrement-button" %>
                         <span id="quantity-display" class="mx-2"><%= cartItem.quantity %></span>
-                        <%= button_to '+',increment_quantity_path(cartItem.product.id),method: :post, class: "btn btn-success increment-button" %>
+                        <%= button_to '+', increment_quantity_path(cartItem.product.id), method: :post, class: "btn btn-success increment-button" %>
                     </div>
-                    <%= link_to 'View',product_path(cartItem.product)%>
-                    <%= link_to 'Delete',cart_item_path(cartItem.product), data: { turbo_method: :delete } %>
+                    <%= link_to 'View', product_path(cartItem.product)%>
+                    <%= link_to 'Delete', cart_item_path(cartItem.product), data: { turbo_method: :delete } %>
                 </div>
             </div>
         </div>
-    <%end%>
+    <% end %>
     <%=  render 'cart/cart_pay' %>
-<%end%>
+<% end %>

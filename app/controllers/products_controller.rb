@@ -1,17 +1,19 @@
 class ProductsController < ApplicationController
     include Pundit::Authorization
 
-    before_action :authenticate_user!, except: [:index, :show]
+    before_action :authenticate_user!, except: [:show]
     before_action :set_product, only: %i[ show destroy ]
 
 
     def index
-        @products = Product.all
-        render 'home/index'
+        authorize current_user, :isAdmin?
+        respond_to do |format|
+            format.html
+            format.json { render json: ProductDatatable.new(params) }
+        end
     end
 
     def show
-        render 'product/show'
     end
 
     def destroy
@@ -37,7 +39,6 @@ class ProductsController < ApplicationController
     end
 
     def new
-        render 'product/new'
     end
 
     private

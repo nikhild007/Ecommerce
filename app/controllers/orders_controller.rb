@@ -68,7 +68,9 @@ class OrdersController < ApplicationController
     end
 
     def update
-        authorize @order
+        if params[:status] != "cancelled"
+            authorize @order
+        end
         @order.status = params[:status]
         @order.save
         redirect_to    
