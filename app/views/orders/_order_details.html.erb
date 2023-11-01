@@ -5,5 +5,5 @@
             <p><%= item.product.name%> &nbsp;&nbsp;&nbsp;x <strong>(<%= item.quantity%>)</strong></p>
             <p>Rs<%= calculate_price(item.product.price,item.quantity)%>/- </p>
         </div>
-    <%end%>
+    <% end %>
 <h6> Total Order Value : Rs <%= calculate_total_order_value(@items) %>/- </h6>

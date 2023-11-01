@@ -53,10 +53,9 @@ class OrdersController < ApplicationController
     end
 
     def index
-        begin
-            authorize current_user, :isAdmin?
+        if current_user.has_role?("admin")
             @orders = Order.all
-        rescue Pundit::NotAuthorizedError
+        else
             @orders = current_user.orders
         end
         render 'orders/index'
@@ -68,7 +67,9 @@ class OrdersController < ApplicationController
     end
 
     def update
-        authorize @order
+        if params[:status] != "cancelled"
+            authorize @order
+        end
         @order.status = params[:status]
         @order.save
         redirect_to    

@@ -3,8 +3,8 @@
         <h3>Manage All Orders</h3>
     <% else %>
         <h3>My Orders</h3>
-    <%end%>
-<%end%>
+    <% end %>
+<% end %>
 <% if @orders == nil ||  @orders&.length == 0%>
     <p>You don't have any orders yet, <%= link_to 'Continue Shopping',home_path %></p>
 <%else%>

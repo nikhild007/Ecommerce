@@ -7,7 +7,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Don't Cancel</button>
-        <%= button_to 'Cancel Order', order_path(@order, status: 'cancel'), method: :patch, class: 'btn btn-danger' %>
+        <%= button_to 'Cancel Order', order_path(@order, status: 'cancelled'), method: :patch, class: 'btn btn-danger' %>
       </div>
     </div>
   </div>
