@@ -6,7 +6,8 @@ class ProductDatatable < AjaxDatatablesRails::ActiveRecord
     @view_columns ||= {
       name: { source: "Product.name", cond: :like, searchable: true },
       description: { source: "Product.description" },
-      price: { source: "Product.price" }
+      price: { source: "Product.price" },
+      stock_quantity: {source: "Product.stock_quantity"}
     }
   end
 
@@ -15,7 +16,8 @@ class ProductDatatable < AjaxDatatablesRails::ActiveRecord
       {
         name: product.name,
         description: product.description,
-        price: product.price
+        price: product.price,
+        stock_quantity: product.stock_quantity
       }
     end
   end

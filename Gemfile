@@ -25,6 +25,8 @@ gem 'jquery-rails'
 
 gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 
+gem 'sidekiq'
+
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 

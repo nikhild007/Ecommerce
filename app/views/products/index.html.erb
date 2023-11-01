@@ -1,24 +1,13 @@
+<h3 class="mb-5">Admin Panel for Products</h3>
+
 <table id="product-datatable" data-source="<%= products_path(format: :json) %>" style="width:100%" class="display">
   <thead>
     <tr>
       <th>Name</th>
       <th>Description</th>
       <th>Price</th>
+      <th>Stock Quantity</th>
     </tr>
   </thead>
   <tbody></tbody>
 </table>
-
-<script>
-  var $ = jQuery.noConflict();
-    $(document).ready(function () {
-      $("#product-datatable").DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: {
-          url: $("#product-datatable").data("source"),
-        },
-        columns: [{ data: "name" }, { data: "description" }, { data: "price" }],
-      });
-    });
-  </script>

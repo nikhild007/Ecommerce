@@ -27,12 +27,12 @@ class OrdersController < ApplicationController
         end
 
         @order.total = total
-        @order.status = "accepted"
 
-        if @order.save!
+        if @order.save
             cart_items.destroy_all
             products_to_update.each(&:save)
             @items = @order.order_items
+            UpdateOrderStatusJob.perform_async(@order.id,"accepted")
             redirect_to controller: 'orders', action: 'index'
         else
             flash[:error] = "Order Failed"

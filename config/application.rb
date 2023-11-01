@@ -17,6 +17,7 @@ module Ecommerce
     config.autoload_lib(ignore: %w(assets tasks))
 
     config.assets.paths << Rails.root.join('app', 'assets', 'javascripts')
+    config.active_job.queue_adapter = :sidekiq
     
     # Configuration for the application, engines, and railties goes here.
     #
