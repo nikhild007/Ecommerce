@@ -45,11 +45,10 @@ class OrdersController < ApplicationController
         manage_product_quantity(@order.order_items)
         if @order.destroy!
             flash[:notice] = "Order Deleted Successfully"
-            redirect_to controller:"home", action: "index"
         else
             flash[:error] = "Something went wrong while deleting the order"
-            redirect_to controller: 'orders', action: 'show'
         end
+        redirect_to controller: 'orders', action: 'show'
     end
 
     def index
