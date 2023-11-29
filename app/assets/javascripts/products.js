@@ -1,4 +1,5 @@
 var $ = jQuery.noConflict();
+
 $(document).ready(function () {
   $("#product-datatable").DataTable({
     processing: true,
