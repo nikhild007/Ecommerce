@@ -1,0 +1,32 @@
+<!-- app/views/chat/index.html.erb -->
+
+<h1>Chat Room</h1>
+
+<div id="chat"></div>
+
+<input type="text" id="message_input" placeholder="Type your message...">
+<button onclick="sendMessage()">Send</button>
+
+<script>
+    document.addEventListener("turbo:load", () => {
+        const channelID = prompt('Enter chat channel ID:');
+        // debugger
+        App.chat = App.cable.consumer.subscriptions.create({ channel: 'ChatChannel', channel_id: channelID }, {
+            received: function(data) {
+                const message = data.message;
+                const sender = data.sender; // Include sender information in the payload
+                console.log(sender + ': ' + message);
+                document.getElementById('chat').innerHTML += '<p>' + sender + ': ' + message + '</p>';
+            }
+        });
+
+    })
+
+    function sendMessage() {
+        const message = document.getElementById('message_input').value;
+        App.chat.perform('receive', { message: message });
+        document.getElementById('message_input').value = '';
+    }
+
+</script>
+

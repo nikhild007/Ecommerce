@@ -41,5 +41,4 @@ module OrdersHelper
             item.product.save
         end
     end
-
 end

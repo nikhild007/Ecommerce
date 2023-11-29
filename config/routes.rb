@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :orders
   resources :cart_items
   resources :order_items
+  resources :chat
 
   get '/cart',to: 'carts#index', as: 'get_cart'
   post '/increment/:product_id', to: 'cart_items#increment', as: 'increment_quantity'
@@ -18,6 +19,8 @@ Rails.application.routes.draw do
 
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
+
+  mount ActionCable.server => '/cable'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

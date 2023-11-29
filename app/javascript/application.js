@@ -5,3 +5,5 @@ import "controllers";
 import "popper";
 
 import "bootstrap";
+import "@rails/actioncable";
+import "channels";
